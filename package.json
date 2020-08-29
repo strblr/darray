@@ -1,0 +1,35 @@
+{
+  "name": "darray",
+  "version": "1.0.0",
+  "description": "Given two arrays A and B, returns what should be added, updated and / or removed when going from A to B",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ostrebler/darray.git"
+  },
+  "keywords": [
+    "diff",
+    "difference",
+    "update",
+    "array",
+    "add",
+    "remove",
+    "added",
+    "removed",
+    "change"
+  ],
+  "author": "ostrebler",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ostrebler/darray/issues"
+  },
+  "homepage": "https://github.com/ostrebler/darray#readme",
+  "dependencies": {
+    "typescript": "^4.0.2"
+  }
+}
