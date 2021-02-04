@@ -90,6 +90,13 @@ export declare function diff<T>(
   equivalent?: (oldElement: T, newElement: T) => boolean
 ): readonly [T[], T[], T[]];
 
+export declare function hasDiff<T>(
+  oldArray: Array<T>,
+  newArray: Array<T>,
+  identity?: (element: T) => any,
+  equivalent?: (oldElement: T, newElement: T) => boolean
+): boolean; 
+
 export default diff;
 ```
 

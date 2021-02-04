@@ -1,16 +1,16 @@
-function id<T>(element: T) {
+function defaultId<T>(element: T) {
   return element;
 }
 
-function equi<T>(oldElement: T, newElement: T) {
+function defaultEquivalent<T>(oldElement: T, newElement: T) {
   return oldElement === newElement;
 }
 
 export function diff<T>(
   oldArray: Array<T>,
   newArray: Array<T>,
-  identity: (element: T) => any = id,
-  equivalent: (oldElement: T, newElement: T) => boolean = equi
+  identity: (element: T) => any = defaultId,
+  equivalent: (oldElement: T, newElement: T) => boolean = defaultEquivalent
 ) {
   const keyedOld = new Map(
     oldArray.map(element => [identity(element), element])
@@ -28,6 +28,17 @@ export function diff<T>(
   }
 
   return [added, updated, Array.from(keyedOld.values())] as const;
+}
+
+export function hasDiff<T>(
+  oldArray: Array<T>,
+  newArray: Array<T>,
+  identity: (element: T) => any = defaultId,
+  equivalent: (oldElement: T, newElement: T) => boolean = defaultEquivalent
+) {
+  return diff(oldArray, newArray, identity, equivalent).some(
+    result => result.length !== 0
+  );
 }
 
 export default diff;
