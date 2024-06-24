@@ -17,17 +17,27 @@ export function diff<T>(
   );
   const added: Array<T> = [];
   const updated: Array<T> = [];
+  const updatedFromOld: Array<T> = [];
 
   for (const element of newArray) {
     const k = identity(element);
     if (!keyedOld.has(k)) added.push(element);
     else {
-      if (!equivalent(keyedOld.get(k)!, element)) updated.push(element);
+      const oldElement = keyedOld.get(k)!;
+      if (!equivalent(oldElement, element)) {
+        updated.push(element);
+        updatedFromOld.push(oldElement);
+      }
       keyedOld.delete(k);
     }
   }
 
-  return [added, updated, Array.from(keyedOld.values())] as const;
+  return [
+    added,
+    updated,
+    Array.from(keyedOld.values()),
+    updatedFromOld
+  ] as const;
 }
 
 export function hasDiff<T>(
